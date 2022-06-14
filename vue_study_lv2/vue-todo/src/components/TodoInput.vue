@@ -14,22 +14,38 @@
     >
       <i class="fas fa-plus add-btn"></i>
     </span>
+    <modal-component v-if="showModal" @close="showModal = false">
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <h3 slot="header">
+        경고!
+        <i class="close-modal-btn fas fa-times" @click="showModal = false"></i>
+      </h3>
+      <div slot="body">아무것도 입력하지 않았습니다.</div>
+      <div slot="footer"></div>
+    </modal-component>
   </div>
 </template>
 
 <script>
+import ModalComponent from './common/ModalComponent.vue';
 export default {
+  components: { ModalComponent },
   data() {
     return {
       newTodoItem: "",
+      showModal:false
     };
   },
   methods: {
     addTodo: function () {
       if (this.newTodoItem !== "") {
-        let obj = { completed: false, item: this.newTodoItem };
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
-        this.clearInput();
+        this.$emit('addTodoItem',this.newTodoItem)
+        this.newTodoItem=""
+      }else{
+        this.showModal=true
       }
     },
     clearInput: function () {

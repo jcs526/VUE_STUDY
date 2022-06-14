@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <todo-header />
-    <todo-input />
-    <todo-list />
-    <todo-footer />
+    <todo-input @addTodoItem="addOneItem" />
+    <todo-list :propsdata="todoItems" @removeItem="removeOneItem" @toggleItem="toggleOneItem" />
+    <todo-footer @clearItems="clearAllItems"/>
   </div>
 </template>
 
@@ -14,11 +14,52 @@ import TodoList from "./components/TodoList.vue";
 import TodoFooter from "./components/TodoFooter.vue";
 
 export default {
+  data: function () {
+    return {
+      todoItems: [],
+    };
+  },
+
+  methods: {
+    addOneItem: function (todoItem) {
+      let obj = { completed: false, item: todoItem };
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    },
+    removeOneItem: function(todoItem,index) {
+      console.log(typeof todoItem)
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
+    },
+    toggleOneItem : function(index) {
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      localStorage.removeItem(this.todoItems[index].item);
+      localStorage.setItem(this.todoItems[index].item, JSON.stringify(this.todoItems[index]));
+    },
+    clearAllItems : function () {
+      localStorage.clear();
+      this.todoItems = [];
+    }
+  },
+
   components: {
     TodoHeader,
     TodoInput,
     TodoList,
     TodoFooter,
+  },
+
+  created() {
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+          this.todoItems.push(
+            JSON.parse(localStorage.getItem(localStorage.key(i)))
+          );
+          // this.todoItems.push(localStorage.key(i));
+        }
+      }
+    }
   },
 };
 </script>
