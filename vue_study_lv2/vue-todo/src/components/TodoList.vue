@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in propsdata" :key="todoItem.item" class="shadow">
+      <li v-for="(todoItem, index) in this.$store.state.todoItems" :key="todoItem.item" class="shadow">
         <i
           class="check-btn fas fa-check"
           @click="toggleComplete(index)"
@@ -20,7 +20,6 @@
 
 <script>
 export default {
-  props:['propsdata'],
   methods: {
     removeTodo: function (todoItem, index) {
       this.$emit('removeItem',todoItem.item,index);
