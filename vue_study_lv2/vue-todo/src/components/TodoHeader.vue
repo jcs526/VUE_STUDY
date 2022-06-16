@@ -1,11 +1,16 @@
 <template>
   <div>
-    <h1>TODO it!</h1>
+    <h1>{{headerText}}</h1>
   </div>
 </template>
 
 <script>
-export default {};
+import {mapState} from 'vuex'
+export default {
+  computed:{
+    ...mapState(['headerText'])
+  }
+};
 </script>
 
 <style scoped>

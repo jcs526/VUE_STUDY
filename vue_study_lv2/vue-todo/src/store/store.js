@@ -23,6 +23,7 @@ const storage = {
 export const store = new Vuex.Store({
     state: {
         todoItems: storage.fetch(),
+        headerText : "TODO it!",
     },
     getters: {
         storedTodoItems(state){
