@@ -1,0 +1,31 @@
+
+  <!DOCTYPE html>
+  <html lang="kor">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 조작</title>
+  </head>
+
+  <body>
+    <script>
+    window.onload = () => {
+      //creat a couple of elements in an otherwise empty HTML page
+      const heading = document.createElement("h1");
+      const heading_text = document.createTextNode("Big Head!");
+      heading.appendChild(heading_text);
+      document.body.appendChild(heading);
+    };
+    
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((res1) => res1.json())
+      .then((res2) => { console.log(res2); return res2 })
+      .then((res3) => res3.forEach(v => console.log(v.name + 1)))
+      .catch(console.error)
+    
+    </script>
+  </body>
+
+  </html>

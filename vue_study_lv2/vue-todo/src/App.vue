@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <todo-header />
-    <todo-input @addTodoItem="addOneItem" />
-    <todo-list :propsdata="todoItems" @removeItem="removeOneItem" @toggleItem="toggleOneItem" />
-    <todo-footer @clearItems="clearAllItems"/>
+    <todo-input />
+    <todo-list />
+    <todo-footer />
   </div>
 </template>
 
@@ -14,33 +14,13 @@ import TodoList from "./components/TodoList.vue";
 import TodoFooter from "./components/TodoFooter.vue";
 
 export default {
-  data () {
+  data() {
     return {
       todoItems: [],
     };
   },
 
-  methods: {
-    addOneItem (todoItem) {
-      let obj = { completed: false, item: todoItem };
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
-    removeOneItem(todoItem,index) {
-      console.log(typeof todoItem)
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
-    },
-    toggleOneItem (index) {
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      localStorage.removeItem(this.todoItems[index].item);
-      localStorage.setItem(this.todoItems[index].item, JSON.stringify(this.todoItems[index]));
-    },
-    clearAllItems  () {
-      localStorage.clear();
-      this.todoItems = [];
-    }
-  },
+  methods: {},
 
   components: {
     TodoHeader,
@@ -48,8 +28,6 @@ export default {
     TodoList,
     TodoFooter,
   },
-
-  
 };
 </script>
 
