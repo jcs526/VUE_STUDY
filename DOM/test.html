@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM 조작</title>
+    <style>
+      body{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
 
   <body>
@@ -25,6 +31,26 @@
       .then((res3) => res3.forEach(v => console.log(v.name + 1)))
       .catch(console.error)
     
+      window.onload = () => {
+        let canvas = document.createElement('canvas');
+        canvas.className='canvas1';
+        let context = canvas.getContext('2d');
+
+        // 원하는 위치에 글자 그리기
+        context.fillStyle='red';
+        context.font="20px cursive";
+        context.fillText("Hello",10,40);
+        //속이 빈 글씨
+        context.strokeStyle="blue";
+        context.font="20px cursive";
+        context.strokeText("Hello!",200,50)
+
+        //원하는 위치에 도형 그리기
+        context.strokeStyle="green";
+        context.strokeRect(50,50,100,100);
+
+        document.body.appendChild(canvas)
+      }
     </script>
   </body>
 
