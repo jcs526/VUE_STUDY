@@ -1,32 +1,24 @@
 <template>
   <div>
-    <p v-for="item in news" :key="item.id">
-      <a :href="item.url">
-      {{item.title}}
-      </a>
-      <small>{{item.time_ago}} by 
-      <router-link :to="'/user/'+item.user">
-      {{item.user}}
-      </router-link>
-      </small>
-    </p>
+    <div v-for="user in users" :key="user.id">
+      {{ user }}
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
+import { fetchNewsList } from "../api/index.js";
 
 export default {
   data() {
     return {
+      users: [],
     };
   },
-  computed:{
-    ...mapState(['news'])
-  },
   created() {
-    this.$store.dispatch('FETCH_NEWS');
+    fetchNewsList()
+      .then((response) => (this.users = response.data))
+      .catch((error) => console.log(error));
   },
 };
 </script>
