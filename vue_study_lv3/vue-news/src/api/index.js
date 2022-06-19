@@ -8,7 +8,7 @@ let instance = axios.create({
 const config ={
     news : 'news/1.json',
     jobs : 'jobs/1.json',
-    ask : 'ask/1.json'
+    ask : 'ask/1.json',
 }
 
 // 2. API 함수들을 정리
@@ -21,6 +21,14 @@ function fetchJobsList(){
 function fetchAskList(){
     return instance.get(`${config.ask}`);
 }
+function fetchUser(data){
+    return instance.get(`user/${data}.json`);
+}
+function fetchItem(path){
+    console.log("펫치");
+    console.log(path);
+    return instance.get(`${path}.json`);
+}
 
 
-export {fetchNewsList,fetchJobsList,fetchAskList};
+export {fetchNewsList,fetchJobsList,fetchAskList,fetchUser,fetchItem};
