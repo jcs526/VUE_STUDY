@@ -1,33 +1,58 @@
 <template>
   <div>
-  comments : 
-    <div v-for="comment in fetchedItem.comments" :key="comment.id">
-    <p>{{comment.id}}</p>
-    <p>{{comment.user}}</p>
-    <p>{{comment.time}}</p>
-    <p>{{comment.content}}</p>
-    ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    </div>
-  <p>comments_count : {{fetchedItem.comments_count}} </p>
-  <p>content : {{fetchedItem.content}}</p>
-  <p>id : {{fetchedItem.id}}</p>
-  <p>points : {{fetchedItem.points}}</p>
+    <section>
+      <!-- 질문 상세정보 -->
+      <div>
+        <div class="user-container">
+          <font-awesome-icon
+            :icon="['fas', 'user']"
+            class="user-icon"
+          ></font-awesome-icon>
 
+          <div>
+            <router-link :to="`/user/${fetchedItem.user}`">
+              {{ fetchedItem.user }}
+            </router-link>
+            <div id="time">
+              {{ fetchedItem.time_ago }}
+            </div>
+          </div>
+        </div>
+        <h2>{{ fetchedItem.title }}</h2>
+      </div>
+    </section>
+    <section>
+      <div v-html="fetchedItem.content"></div>
+    </section>
   </div>
 </template>
 
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  computed:{
-    ...mapGetters(['fetchedItem'])
+  computed: {
+    ...mapGetters(["fetchedItem"]),
   },
   created() {
-    this.$store.dispatch('FETCH_ITEM',this.$route.path);
+    this.$store.dispatch("FETCH_ITEM", this.$route.path);
   },
 };
 </script>
 <style>
+.user-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+.user-icon {
+  font-size: 2.5rem;
+}
+.user-description {
+  padding-left: 8px;
+}
+.time {
+  font-size: 0.7rem;
+}
 </style>
