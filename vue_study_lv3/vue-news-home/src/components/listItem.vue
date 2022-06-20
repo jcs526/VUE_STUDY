@@ -1,7 +1,6 @@
 <template>
-  <div>
-   <ul class="fetched-list">
-      <li v-for="item in jobs" :key="item.id" class="fetched-item">
+  <ul class="fetched-list">
+      <li v-for="item in news" :key="item.id" class="fetched-item">
         <!-- 포인트 영역 -->
         <div class="points">
           {{ item.points || 0 }}
@@ -37,28 +36,20 @@
         </div>
       </li>
     </ul>
-  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
-
 export default {
-  data() {
-    return {
-    };
+  computed: {
+    ...mapState(["news"]),
   },
-  computed:{
-    ...mapState({
-      jobs: state => state.jobs
-    })
+  
+created() {
+    this.$store.dispatch("FETCH_NEWS");
   },
-
-  created() {
-   this.$store.dispatch('FETCH_JOBS')
-  },
-};
+}
 </script>
 
 <style>
