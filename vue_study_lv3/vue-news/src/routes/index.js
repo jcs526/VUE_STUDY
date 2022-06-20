@@ -9,32 +9,32 @@ import ItemView from '../views/ItemView.vue'
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
-  mode:'history',
-  routes:[
+  mode: 'history',
+  routes: [
     {
       path: '/',
-      redirect:'/news',
+      redirect: '/news',
     },
     {
-        path: '/news',
-        component: NewsView,
+      path: '/news',
+      component: NewsView,
     },
     {
-        path: '/ask',
-        component: AskView,
+      path: '/ask',
+      component: AskView,
     },
     {
-        path: '/jobs',
-        component: JobsView,
+      path: '/jobs',
+      component: JobsView,
     },
     {
-        path: '/item',
-        component: ItemView,
+      path: '/item/:id',
+      component: ItemView,
     },
     {
-        path: '/user',
-        component: UserView,
+      path: '/user/:id',
+      component: UserView,
     },
-    
+
   ]
 });
