@@ -3,21 +3,7 @@
     <section>
       <!-- 질문 상세정보 -->
       <div>
-        <div class="user-container">
-          <font-awesome-icon
-            :icon="['fas', 'user']"
-            class="user-icon"
-          ></font-awesome-icon>
-
-          <div>
-            <router-link :to="`/user/${fetchedItem.user}`">
-              {{ fetchedItem.user }}
-            </router-link>
-            <div id="time">
-              {{ fetchedItem.time_ago }}
-            </div>
-          </div>
-        </div>
+        
         <h2>{{ fetchedItem.title }}</h2>
       </div>
     </section>
