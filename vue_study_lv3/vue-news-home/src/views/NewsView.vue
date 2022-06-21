@@ -5,7 +5,11 @@
 <script>
 import listItem from '../components/ListItem.vue';
 export default {
-  components: { listItem },};
+  components: { listItem },
+  created(){
+    this.$store.dispatch("FETCH_NEWS");
+  }
+  };
 </script>
 
 <style>

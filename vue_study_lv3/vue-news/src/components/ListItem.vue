@@ -13,7 +13,7 @@
             <template v-if="item.domain">
               <a :href="item.url"> {{ item.title }}</a>
             </template>
-            <template>
+            <template v-else>
               <router-link :to="`item/${item.id}`">
                 {{ item.title }}
               </router-link>

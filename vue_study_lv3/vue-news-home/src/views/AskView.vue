@@ -9,6 +9,9 @@ export default {
  components: {
     listItem,
   },
+  created(){
+    this.$store.dispatch("FETCH_ASKS");
+  }
 };
 </script>
 
