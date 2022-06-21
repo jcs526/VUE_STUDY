@@ -1,15 +1,22 @@
 <template>
   <div>
-    <p>name : {{ user.id }}</p>
+    <user-profile :info="user">
+      <div slot="username">{{ user.id }}</div>
+      <span slot="time">{{ user.created }}</span>
+      <span slot="karma">
+        {{ user.karma }}
+      </span>
+    </user-profile>
+    <!-- <p>name : {{ user.id }}</p>
     <p>karma : {{ user.karma }}</p>
     <p>created : {{ user.created }}</p>
-    <p v-html="user.about"></p>
+    <p v-html="user.about"></p> -->
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import { mapState } from "vuex";
+import UserProfile from "../components/UserProfile.vue";
 export default {
   computed: {
     ...mapState(["user"]),
@@ -20,6 +27,7 @@ export default {
     //  axios.get(`https://api.hnpwa.com/v0/user/${userName}.json`)
     this.$store.dispatch("FETCH_USERINFO", userName);
   },
+  components: { UserProfile },
 };
 </script>
 

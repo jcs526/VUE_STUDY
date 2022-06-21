@@ -1,31 +1,18 @@
 <template>
   <div>
-    <p v-for="item in news" :key="item.id">
-      <a :href="item.url">
-      {{item.title}}
-      </a>
-      <small>{{item.time_ago}} by 
-      <router-link :to="`/user/${item.user}`">
-      {{item.user}}
-      </router-link>
-      </small>
-    </p>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
+import listItem from '../components/ListItem.vue';
 
 export default {
-  computed:{
-    ...mapState(['news'])
-  },
-  created() {
-    this.$store.dispatch('FETCH_NEWS');
-  },
+  components: { listItem },
+  
 };
 </script>
 
 <style>
+
 </style>
