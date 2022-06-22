@@ -1,5 +1,5 @@
 
-import { fetchNewsList, fetchAskList, fetchJobsList, fetchUser, fetchItem } from "../api/index.js";
+import { fetchNewsList, fetchAskList, fetchJobsList, fetchUser, fetchItem, fetchList } from "../api/index.js";
 
 export default {
     FETCH_NEWS(context) {
@@ -34,8 +34,19 @@ export default {
     FETCH_ITEM({ commit }, path) {
         console.log(path)
         fetchItem(path)
-            .then(res => 
+            .then(res =>
                 commit('SET_ITEM', res.data))
             .catch((err) => console.log(err));
+    },
+
+    async FETCH_LIST({ commit }, pageName) {
+        try {
+            const response = await fetchList(pageName);
+            commit('SET_LIST', response.data);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }

@@ -29,6 +29,8 @@ function fetchItem(path){
     console.log(path);
     return instance.get(`${path}.json`);
 }
+function fetchList(pageName){
+    return instance.get(`${pageName}/1.json`)
+}
 
-
-export {fetchNewsList,fetchJobsList,fetchAskList,fetchUser,fetchItem};
+export {fetchNewsList,fetchJobsList,fetchAskList,fetchUser,fetchItem,fetchList};

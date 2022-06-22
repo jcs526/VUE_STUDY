@@ -4,14 +4,21 @@
     <transition name="page">
     <router-view></router-view>
     </transition>
+    <spinner :loading="condition"></spinner>
   </div>
 </template>
 
 <script>
 import ToolBar from './components/ToolBar.vue'
+import Spinner from './views/Spinner.vue'
 
 export default {
-  components: { ToolBar },
+  components: { ToolBar, Spinner },
+  data() {
+    return {
+      conditon : true,
+    }
+  },
 
 }
 </script>
