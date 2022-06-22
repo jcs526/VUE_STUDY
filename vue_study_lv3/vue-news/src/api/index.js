@@ -30,5 +30,9 @@ function fetchItem(id) {
     return instance.get(`item/${id}.json`)
 }
 
+function fetchList(pageName){
+    return instance.get(`${pageName}/1.json`)
+}
 
-export { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem };
+
+export { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem,fetchList };
