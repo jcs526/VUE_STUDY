@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import bus from '../utils/bus';
 
 export default {
   computed: {
@@ -66,6 +67,9 @@ export default {
     } else if (name === "jobs") {
       this.$store.dispatch("FETCH_JOBS");
     }
+  },
+  mounted() {
+    bus.$emit('end');
   },
 };
 </script>

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import bus from './utils/bus'
 import ToolBar from './components/ToolBar.vue'
 import Spinner from './views/Spinner.vue'
 
@@ -16,10 +17,26 @@ export default {
   components: { ToolBar, Spinner },
   data() {
     return {
-      conditon : true,
+      condition : false,
     }
   },
-
+  methods: {
+    spinnerStart(){
+      console.log("스타트 작동함!")
+      this.condition=true;
+    },
+    spinnerEnd(){
+      this.condition=false;
+    }
+  },
+  created() {
+    bus.$on('start',this.spinnerStart)
+    bus.$on('end',this.spinnerEnd)
+  },
+  beforeDestroy() {
+    bus.$off('start',this.spinnerStart)
+    bus.$off('end',this.spinnerEnd)
+  },
 }
 </script>
 
